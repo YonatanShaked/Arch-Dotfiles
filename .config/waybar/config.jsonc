@@ -2,10 +2,14 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["network", "pulseaudio", "battery", "clock"],
+  "modules-right": ["temperature", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "tray", "clock"],
   "clock": {
-    "format": "<span foreground='#f5c2e7'>   </span>{:%a %d %H:%M}",
+    "format": "<span foreground='#f5c2e7'></span>{:%d/%m/%Y %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6
   },
   "battery": {
     "states": {
@@ -27,14 +31,33 @@
     "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󰤭  </span> Disconnected",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "<span size='13000' foreground='#f5e0dc'>  </span>Disconnected",
-    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%"
+    "tooltip-format-wifi": "Signal Strenght: {signalStrength}%",
+    "on-click": "alacritty --command nmtui"
   },
   "pulseaudio": {
-      "format": "{icon}  {volume}%",
-      "format-muted": "",
-      "format-icons": {
-          "default": ["", "", " "]
-      },
-      "on-click": "pavucontrol"
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", " "]
+    },
+    "on-click": "alacritty --command pulsemixer"
+  },
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%"
+  },
+  "memory": {
+    "interval": 1,
+    "format": " {}%"
+  },
+  "hyprland/language": {
+    "format": " {short}",
+    "keyboard-name": "at-translated-set-2-keyboard",
+    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+  },
+  "temperature": {
+    "interval": 1,
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C"
   }
 }

@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Audio Listener
+Exec=/usr/bin/audacious %f

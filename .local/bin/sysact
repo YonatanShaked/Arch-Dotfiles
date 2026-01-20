@@ -1,0 +1,18 @@
+#!/bin/sh
+
+CHOICES=" Lock
+󰒲 Sleep
+󰍃 Logout
+󰐥 Shutdown
+ Reboot"
+
+CHOICE=$(printf "%s\n" "$CHOICES" | rofi -dmenu -i -p "Action")
+
+case "$CHOICE" in
+    *Lock) hyprlock ;;
+    *Sleep) hyprlock & systemctl suspend -i ;;
+    *Logout) hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit ;;
+    *Shutdown) systemctl poweroff -i ;;
+    *Reboot) systemctl reboot -i ;;
+    *) exit 1 ;;
+esac
