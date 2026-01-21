@@ -44,14 +44,14 @@
   },
   "cpu": {
     "interval": 1,
-    "format": " {usage}%"
+    "format": "  {usage}%"
   },
   "memory": {
     "interval": 1,
-    "format": " {}%"
+    "format": "  {}%"
   },
   "hyprland/language": {
-    "format": " {short}",
+    "format": "  {short}",
     "keyboard-name": "at-translated-set-2-keyboard",
     "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
   },
