@@ -79,6 +79,7 @@ button:hover {
 #language {
     color: @pink;
     border-bottom: 2px solid @pink;
+    min-width: 50px;
 }
 
 #cpu {
