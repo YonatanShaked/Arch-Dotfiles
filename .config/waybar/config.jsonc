@@ -44,11 +44,13 @@
   },
   "cpu": {
     "interval": 1,
-    "format": "  {usage}%"
+    "format": "  {usage}%",
+    "on-click": "alacritty --command btop"
   },
   "memory": {
     "interval": 1,
-    "format": "  {}%"
+    "format": "  {}%",
+    "on-click": "alacritty --command btop"
   },
   "hyprland/language": {
     "format": "  {short}",

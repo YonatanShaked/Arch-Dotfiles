@@ -1,12 +1,8 @@
 [Default Applications]
-
-# xdg-open will use these settings to determine how to open filetypes.
-# These .desktop entries can also be seen and changed in ~/.local/share/applications/
-
 text/x-shellscript=text.desktop;
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;
-x-scheme-handler/mailto=mail.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-I5PJJ3.desktop
 text/plain=text.desktop;
 application/postscript=pdf.desktop;
 application/pdf=pdf.desktop;
@@ -25,3 +21,9 @@ audio/x-flac=audio.desktop
 audio/x-m4a=audio.desktop
 x-scheme-handler/lbry=lbry.desktop
 inode/directory=file.desktop
+message/rfc822=userapp-Thunderbird-I5PJJ3.desktop
+x-scheme-handler/mid=userapp-Thunderbird-I5PJJ3.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-I5PJJ3.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-I5PJJ3.desktop;
