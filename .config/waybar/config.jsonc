@@ -10,6 +10,7 @@
   },
   "custom/power": {
     "format": "<span color='#f2cdcd'>⏻</span>{}",
+    "tooltip": false,
     "on-click": "~/.local/bin/sysact"
   },
   "clock": {
