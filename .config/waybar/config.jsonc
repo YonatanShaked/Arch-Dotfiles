@@ -2,15 +2,28 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["temperature", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "tray", "clock"],
+  "modules-right": ["temperature", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "tray", "clock", "custom/power"],
   "hyprland/window": {
     "format": "{title}",
     "max-length": 50,
     "icon": true
   },
+  "custom/power": {
+    "format": "<span color='#f2cdcd'>⏻</span>{}",
+    "on-click": "~/.local/bin/sysact"
+  },
   "clock": {
-    "format": "<span foreground='#f5c2e7'></span>{:%d/%m/%Y %H:%M}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "format": "<span foreground='#f5c2e7'>  </span>{:%H:%M %d/%m/%Y}",
+    "tooltip-format": "<big>Calendar</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    }
   },
   "tray": {
     "icon-size": 16,

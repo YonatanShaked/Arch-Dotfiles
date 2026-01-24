@@ -66,6 +66,7 @@ button:hover {
 #tray,
 #network,
 #mode,
+#custom-power,
 #language,
 #scratchpad {
   margin-top: 2px;
@@ -149,6 +150,11 @@ button:hover {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right>widget:last-child>#workspaces {
     margin-right: 0;
+}
+
+#custom-power {
+    color: @flamingo;
+    border-bottom: 2px solid @flamingo;
 }
 
 #custom-vpn {
