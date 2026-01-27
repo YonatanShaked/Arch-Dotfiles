@@ -1,0 +1,4 @@
+brave-bin
+mutt-wizard
+vscodium-bin
+yay
