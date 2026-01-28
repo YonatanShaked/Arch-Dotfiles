@@ -17,7 +17,6 @@ bitwarden
 bluez
 bluez-utils
 brave-bin
-bridge-utils
 brightnessctl
 btop
 btrfs-progs
