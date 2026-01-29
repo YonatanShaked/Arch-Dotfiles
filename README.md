@@ -49,26 +49,25 @@ yay -S --needed - < static/aur_pkgs.txt
 ```
 
 ### 5. Apply dotfiles
-*(Adjust this if you use GNU stow, rsync, or manual linking)*
 
-Example (symlinks):
+symlinks:
 ```bash
-ln -sf ~/arch-dotfiles/.config/* ~/.config/
+ln -sf Arch-Dotfiles/.config/* ~/.config/
 ```
 
-Or using `stow`:
+### 6. Setup NvChad
 ```bash
-stow .
+git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
 ```
 
-### 6. Change default shell to Zsh
+### 7. Change default shell to Zsh
 ```bash
 chsh -s /bin/zsh
 ```
 
 Log out and back in for it to take effect.
 
-### 7. Reboot
+### 8. Reboot
 ```bash
 reboot
 ```
