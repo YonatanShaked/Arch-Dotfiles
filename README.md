@@ -1,5 +1,5 @@
 # Arch-Dotfiles (Yonatan Shaked <https://yonatanshaked.com>'s dotfiles)
-My dot files for arch linux
+My dotfiles for arch linux
 
 ![Screenshot](static/hyprland_ys.png)
 
@@ -11,8 +11,8 @@ My dot files for arch linux
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/arch-dotfiles.git
-cd arch-dotfiles
+git clone https://github.com/YonatanShaked/Arch-Dotfiles.git
+cd Arch-Dotfiles
 ```
 
 ### 2. Install official repository packages
