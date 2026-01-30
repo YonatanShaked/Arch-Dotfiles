@@ -1,7 +1,19 @@
 # Arch-Dotfiles ([Yonatan Shaked](https://yonatanshaked.com)'s dotfiles)
-My dotfiles for arch linux
+My dotfiles for Arch Linux.
 
 ![Screenshot](static/hyprland_ys.png)
+
+**Window Manager**: Hyprland
+
+**Terminal**: Alacritty
+
+**Launcher**: Rofi
+
+**Editor**: Neovim
+
+**File Manager**: Pcmanfm
+
+**Browser**: Brave
 
 ---
 
@@ -65,10 +77,6 @@ chsh -s /bin/zsh
 
 Log out and back in for it to take effect.
 
-### 8. Reboot
-```bash
-reboot
-```
 ---
 
 ## Default Desktop Artwork
