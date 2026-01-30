@@ -16,7 +16,6 @@ bc
 bitwarden
 bluez
 bluez-utils
-brave-bin
 brightnessctl
 btop
 btrfs-progs
@@ -69,8 +68,6 @@ hyprsunset
 imagemagick
 imv
 inkscape
-intel-media-driver
-intel-ucode
 intellij-idea-community-edition
 isync
 iwd
@@ -81,12 +78,7 @@ lf
 libguestfs
 libpulse
 libreoffice-still
-libva-intel-driver
 libvirt
-linux-firmware
-linux-lts
-linux-lts-docs
-linux-lts-headers
 lldb
 lolcat
 lynx
@@ -105,7 +97,6 @@ mpop
 mpv
 msedit
 msmtp
-mutt-wizard
 nano
 ncmpcpp
 neomutt
@@ -262,7 +253,6 @@ vim
 virt-manager
 virt-viewer
 volk
-vscodium-bin
 vulkan-extra-layers
 vulkan-extra-tools
 vulkan-headers
@@ -293,7 +283,6 @@ xf86-video-ati
 xf86-video-nouveau
 xorg-server
 xorg-xinit
-yay
 yt-dlp
 zathura
 zathura-pdf-mupdf
