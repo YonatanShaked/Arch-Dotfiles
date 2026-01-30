@@ -1,4 +1,4 @@
-# Arch-Dotfiles (Yonatan Shaked <https://yonatanshaked.com>'s dotfiles)
+# Arch-Dotfiles ([Yonatan Shaked](https://yonatanshaked.com)'s dotfiles)
 My dotfiles for arch linux
 
 ![Screenshot](static/hyprland_ys.png)
