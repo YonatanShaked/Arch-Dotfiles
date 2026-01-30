@@ -52,7 +52,7 @@ yay -S --needed - < static/aur_pkgs.txt
 
 symlinks:
 ```bash
-ln -sf Arch-Dotfiles/.config/* ~/.config/
+stow -v -t $HOME dotfiles
 ```
 
 ### 6. Setup NvChad
