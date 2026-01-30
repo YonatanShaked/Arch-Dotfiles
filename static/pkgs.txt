@@ -177,6 +177,7 @@ smartmontools
 socat
 sonnet
 spirv-headers
+stow
 sudo
 supertux
 supertuxkart
@@ -255,6 +256,7 @@ unzip
 usbutils
 uwsm
 valgrind
+vcsh
 vde2
 vim
 virt-manager
