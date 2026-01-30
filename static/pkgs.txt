@@ -8,7 +8,6 @@ archlinux-wallpaper
 asciiquarium
 atool
 audacious
-baloo
 base
 base-devel
 bat
@@ -47,9 +46,7 @@ glfw
 glm
 gnome-keyring
 go
-gradle
 grim
-grub
 gst-plugin-pipewire
 gtkmm-4.0
 htop
@@ -67,12 +64,9 @@ hyprshot
 hyprsunset
 imagemagick
 imv
-inkscape
-intellij-idea-community-edition
 isync
 iwd
 just
-kdenlive
 kitty
 lf
 libguestfs
@@ -85,11 +79,9 @@ lynx
 maim
 man-db
 man-pages
-maven
 mediainfo
 meson
 micro
-mono
 moreutils
 mpc
 mpd
@@ -143,7 +135,6 @@ pqiv
 proton-vpn-gtk-app
 protonmail-bridge
 pulsemixer
-pycharm-community-edition
 python-opencv
 qbittorrent
 qemu-full
@@ -154,7 +145,6 @@ qt5ct
 qt6-speech
 qt6-wayland
 qt6ct
-qtcreator
 raylib
 rofi
 rsync
@@ -169,12 +159,8 @@ socat
 sonnet
 spirv-headers
 stow
-sudo
-supertux
-supertuxkart
 swaync
 swtpm
-system-config-printer
 the_silver_searcher
 thunderbird
 tig
@@ -249,7 +235,6 @@ uwsm
 valgrind
 vcsh
 vde2
-vim
 virt-manager
 virt-viewer
 volk
@@ -278,16 +263,12 @@ xdg-desktop-portal-hyprland
 xdg-user-dirs
 xdg-utils
 xdotool
-xf86-video-amdgpu
-xf86-video-ati
-xf86-video-nouveau
 xorg-server
 xorg-xinit
 yt-dlp
 zathura
 zathura-pdf-mupdf
 zip
-zram-generator
 zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
