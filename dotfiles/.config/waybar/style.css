@@ -57,6 +57,7 @@ button:hover {
 #pulseaudio,
 #clock,
 #battery,
+#power-profiles-daemon,
 #cpu,
 #memory,
 #disk,
@@ -138,6 +139,35 @@ button:hover {
 }
 
 #battery {
+    color: @green;
+    border-bottom: 2px solid @green;
+}
+
+#power-profiles-daemon {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 4px;
+    margin-right: 4px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-bottom: 2px solid @overlay1;
+    color: @text;
+}
+
+/* Performance mode */
+#power-profiles-daemon.performance {
+    color: @red;
+    border-bottom: 2px solid @red;
+}
+
+/* Balanced mode */
+#power-profiles-daemon.balanced {
+    color: @yellow;
+    border-bottom: 2px solid @yellow;
+}
+
+/* Power saver mode */
+#power-profiles-daemon.power-saver {
     color: @green;
     border-bottom: 2px solid @green;
 }

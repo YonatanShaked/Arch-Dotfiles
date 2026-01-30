@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["hyprland/window"],
-  "modules-right": ["temperature", "cpu", "memory", "pulseaudio", "battery", "hyprland/language", "tray", "clock", "custom/power"],
+  "modules-right": ["temperature", "cpu", "memory", "pulseaudio", "battery", "power-profiles-daemon", "hyprland/language", "tray", "clock", "custom/power"],
   "hyprland/window": {
     "format": "{title}",
     "max-length": 50,
@@ -40,10 +40,20 @@
     "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
     "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
     "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
-    "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
     "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
     "format-icons": ["", "", "", "", ""],
     "tooltip-format": "{time}"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   },
   "network": {
     "format-wifi": "<span size='13000' foreground='#f5e0dc'>  </span>{essid}",
