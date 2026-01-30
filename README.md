@@ -49,8 +49,6 @@ yay -S --needed - < static/aur_pkgs.txt
 ```
 
 ### 5. Apply dotfiles
-
-symlinks:
 ```bash
 stow -v -t $HOME dotfiles
 ```
