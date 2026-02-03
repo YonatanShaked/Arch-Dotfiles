@@ -5,6 +5,8 @@ My dotfiles for Arch Linux.
 
 **Window Manager**: Hyprland
 
+**Status Bar**: Waybar
+
 **Terminal**: Alacritty
 
 **Launcher**: Rofi
