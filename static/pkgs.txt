@@ -68,6 +68,7 @@ isync
 iwd
 just
 kitty
+kvantum
 lf
 libguestfs
 libpulse
