@@ -124,7 +124,8 @@ otf-opendyslexic-nerd
 otf-overpass-nerd
 partitionmanager
 pass
-pcmanfm
+papirus-icon-theme
+pcmanfm-qt
 pipewire
 pipewire-alsa
 pipewire-jack
