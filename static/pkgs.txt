@@ -80,6 +80,7 @@ lynx
 maim
 man-db
 man-pages
+materia-gtk-theme
 mediainfo
 meson
 micro
