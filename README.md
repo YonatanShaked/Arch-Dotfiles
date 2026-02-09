@@ -1,7 +1,7 @@
 # Arch-Dotfiles ([Yonatan Shaked](https://yonatanshaked.com)'s dotfiles)
 My dotfiles for Arch Linux.
 
-![Screenshot](static/hyprland_ys.png)
+![Screenshot](static/desktop_screenshot.png)
 
 **Window Manager**: Hyprland
 
