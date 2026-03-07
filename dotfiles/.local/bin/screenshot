@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage: screenshot [-r|--region] [-h|--help]
+
+  (no args)         Fullscreen screenshot
+  -r, --region      Select region with slurp
+EOF
+}
+
+REGION=0
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -r|--region) REGION=1; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) echo "Unknown arg: $1" >&2; usage; exit 2 ;;
+  esac
+done
+
+out_dir="$(xdg-user-dir PICTURES)/Screenshots"
+mkdir -p "$out_dir"
+
+ts="$(date +'%s')"
+out_file="$out_dir/${ts}_grim.png"
+
+if [[ $REGION -eq 1 ]]; then
+  if ! region="$(slurp)"; then
+    notify-send "Screenshot canceled" "No region selected."
+    exit 0
+  fi
+  grim -g "$region" "$out_file"
+else
+  grim "$out_file"
+fi
+
+if command -v wl-copy >/dev/null 2>&1; then
+  wl-copy < "$out_file" || true
+  clip_note=" (copied to clipboard)"
+else
+  clip_note=""
+fi
+
+notify-send "Screenshot saved$clip_note" "\n $out_file \n"
+printf '%s\n' "$out_file"

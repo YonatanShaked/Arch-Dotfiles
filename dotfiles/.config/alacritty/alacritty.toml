@@ -12,5 +12,5 @@ bold_italic = { family = "Hack Nerd Font", style = "Bold Italic" }
 offset = { x = 0, y = 0 }
 
 [window]
-opacity = 0.9
+opacity = 0.8
 dimensions = { columns = 150, lines = 45 }

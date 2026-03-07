@@ -68,6 +68,7 @@ isync
 iwd
 just
 kitty
+kvantum
 lf
 libguestfs
 libpulse
@@ -79,6 +80,7 @@ lynx
 maim
 man-db
 man-pages
+materia-gtk-theme
 mediainfo
 meson
 micro
@@ -123,7 +125,8 @@ otf-opendyslexic-nerd
 otf-overpass-nerd
 partitionmanager
 pass
-pcmanfm
+papirus-icon-theme
+pcmanfm-qt
 pipewire
 pipewire-alsa
 pipewire-jack
