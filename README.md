@@ -1,5 +1,5 @@
 # Arch-Dotfiles ([Yonatan Shaked](https://yonatanshaked.com)'s dotfiles)
-My dotfiles for Arch Linux.
+My dotfiles for Arch Linux (for my Thinkpad P15 Gen2).
 
 ![Screenshot](static/desktop_screenshot.png)
 
