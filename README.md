@@ -21,7 +21,7 @@ My dotfiles for Arch Linux (for my Thinkpad P15 Gen2).
 
 ## Setup
 
-> ⚠️ Assumes Arch linux was installed with archinstall script and Hyprland chosen as DE.
+> ⚠️ Assumes Arch Linux was installed with archinstall script and HyprLand chosen as DE.
 
 ### 1. Clone the repository
 ```bash
@@ -67,12 +67,7 @@ yay -S --needed - < static/aur_pkgs.txt
 stow -v -t $HOME dotfiles
 ```
 
-### 6. Setup NvChad
-```bash
-git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
-```
-
-### 7. Change default shell to Zsh
+### 6. Change default shell to zsh
 ```bash
 chsh -s /bin/zsh
 ```

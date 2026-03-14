@@ -69,6 +69,7 @@ iwd
 just
 kitty
 kvantum
+lazygit
 lf
 libguestfs
 libpulse
