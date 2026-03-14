@@ -1,16 +1,11 @@
 return {
-  -- ─── blink.cmp ───────────────────────────────────────────────────────────────
   {
     "saghen/blink.cmp",
     version      = "*",
     event        = { "InsertEnter", "CmdlineEnter" },
-    dependencies = {
-      "rafamadriz/friendly-snippets",
-      { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
-    },
-    opts         = {
-      -- Use the luasnip preset for snippet integration
-      snippets = { preset = "luasnip" },
+    dependencies = { "rafamadriz/friendly-snippets" },
+    opts = {
+      snippets = { preset = "default" },
 
       keymap = {
         preset        = "default",
@@ -29,7 +24,7 @@ return {
 
       cmdline = {
         enabled = true,
-        keymap  = { preset = "cmdline" }, -- <Tab>/<S-Tab> cycle, <CR> confirm
+        keymap  = { preset = "cmdline" },
         sources = { "cmdline", "path" },
       },
 
@@ -40,14 +35,14 @@ return {
           auto_show_delay_ms = 200,
           window             = { border = "rounded" },
         },
-        ghost_text    = { enabled = true },
-        menu          = {
+        ghost_text = { enabled = true },
+        menu = {
           border = "rounded",
           draw   = {
             treesitter = { "lsp" },
             columns    = {
-              { "label",     "label_description", gap = 1 },
-              { "kind_icon", "kind",              gap = 1 },
+              { "label", "label_description", gap = 1 },
+              { "kind_icon", "kind", gap = 1 },
             },
           },
         },
@@ -58,26 +53,5 @@ return {
         window  = { border = "rounded" },
       },
     },
-  },
-
-  -- ─── LuaSnip ─────────────────────────────────────────────────────────────────
-  {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
-    dependencies = "rafamadriz/friendly-snippets",
-    keys = {
-      { "<C-l>", function() require("luasnip").expand_or_jump() end, mode = { "i", "s" }, desc = "Expand/jump" },
-      { "<C-h>", function() require("luasnip").jump(-1) end,         mode = { "i", "s" }, desc = "Jump back" },
-    },
-    config = function()
-      local ls = require("luasnip")
-      require("luasnip.loaders.from_vscode").lazy_load()
-      -- Load any project-local snippets if they exist
-      local snippet_dir = vim.fn.stdpath("config") .. "/snippets"
-      if vim.fn.isdirectory(snippet_dir) == 1 then
-        require("luasnip.loaders.from_lua").lazy_load({ paths = { snippet_dir } })
-      end
-      ls.config.setup({ history = true, updateevents = "TextChanged,TextChangedI" })
-    end,
   },
 }

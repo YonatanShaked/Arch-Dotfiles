@@ -4,10 +4,8 @@ local content = [[
  NAVIGATION
   <C-h/j/k/l>      Move between windows
   <Tab> / <S-Tab>   Next / previous buffer
-  <leader>w         Close current buffer
   <leader>e         Toggle file explorer
   <leader>E         Reveal current file in explorer
-  H / L             Jump to start / end of line
   <C-d> / <C-u>     Half page down / up (centered)
   s                 Flash jump (type chars to jump anywhere)
   S                 Flash jump using treesitter nodes
@@ -29,7 +27,7 @@ local content = [[
   <leader>gg        Open Lazygit (full git UI)
   <leader>gd        Diff view (side by side)
   <leader>gh        File history
-  ]h / [h           Next / previous git hunk
+  ]h / [h           Next / previous hunk
   <leader>ghs       Stage hunk
   <leader>ghp       Preview hunk
   <leader>ghb       Blame current line
@@ -45,7 +43,7 @@ local content = [[
   <leader>xx        Workspace diagnostics panel
   <leader>xb        Buffer diagnostics panel
 
- DEBUG
+ DEBUG (C/C++/CUDA/Python)
   <leader>db        Toggle breakpoint
   <leader>dB        Conditional breakpoint
   <leader>dc        Continue / start debugger
@@ -73,14 +71,10 @@ local content = [[
   <leader>un        Dismiss notifications
 
  EDITING
-  <C-s>             Save file
-  jk                Exit insert mode
-  <leader>y         Yank to system clipboard
   gc (+ motion)     Toggle comment
   <M-hjkl>          Move line/selection (mini.move)
   af / if           Around / inside function (text object)
   ac / ic           Around / inside class (text object)
-  <M-l>             Accept Copilot suggestion
 ]]
 
 function M.show()
@@ -89,40 +83,36 @@ function M.show()
     table.insert(lines, line)
   end
 
-  local c     = _G.Mocha or {}
-  local width = 58
+  local width  = 58
   local height = #lines
-  local row   = math.floor((vim.o.lines - height) / 2)
-  local col   = math.floor((vim.o.columns - width) / 2)
+  local row    = math.floor((vim.o.lines - height) / 2)
+  local col    = math.floor((vim.o.columns - width) / 2)
 
   local buf = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
   vim.bo[buf].modifiable = false
-  vim.bo[buf].filetype   = "markdown"
 
   local win = vim.api.nvim_open_win(buf, true, {
-    relative = "editor",
-    width    = width,
-    height   = height,
-    row      = row,
-    col      = col,
-    style    = "minimal",
-    border   = "rounded",
-    title    = "  Cheatsheet ",
+    relative  = "editor",
+    width     = width,
+    height    = height,
+    row       = row,
+    col       = col,
+    style     = "minimal",
+    border    = "rounded",
+    title     = "  Cheatsheet ",
     title_pos = "center",
   })
 
-  vim.wo[win].wrap      = false
+  vim.wo[win].wrap       = false
   vim.wo[win].cursorline = true
-  vim.wo[win].winblend  = 5
+  vim.wo[win].winblend   = 5
 
-  -- Highlight section headers
   local ns = vim.api.nvim_create_namespace("cheatsheet")
   for i, line in ipairs(lines) do
     if line:match("^ %u") then
       vim.api.nvim_buf_add_highlight(buf, ns, "Function", i - 1, 0, -1)
     elseif line:match("^  %S") then
-      -- key part up to first two spaces after the key
       local key_end = line:find("  ", 3)
       if key_end then
         vim.api.nvim_buf_add_highlight(buf, ns, "Special", i - 1, 2, key_end)
@@ -130,7 +120,6 @@ function M.show()
     end
   end
 
-  -- Close on any of these
   for _, key in ipairs({ "q", "<Esc>", "<CR>", "?" }) do
     vim.keymap.set("n", key, "<cmd>close<CR>", { buffer = buf, silent = true })
   end

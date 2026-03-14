@@ -40,20 +40,16 @@ return {
         local map = function(l, r, desc)
           vim.keymap.set("n", l, r, { buffer = bufnr, desc = desc })
         end
-        -- Navigation
-        map("]h", gs.next_hunk, "Next hunk")
-        map("[h", gs.prev_hunk, "Prev hunk")
-        -- Staging
+        map("]h", gs.next_hunk,  "Next hunk")
+        map("[h", gs.prev_hunk,  "Prev hunk")
         map("<leader>ghs", gs.stage_hunk,   "Stage hunk")
         map("<leader>ghr", gs.reset_hunk,   "Reset hunk")
         map("<leader>ghS", gs.stage_buffer, "Stage buffer")
         map("<leader>ghR", gs.reset_buffer, "Reset buffer")
-        -- Preview / blame
         map("<leader>ghp", gs.preview_hunk, "Preview hunk")
         map("<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame line")
         map("<leader>ghd", gs.diffthis,     "Diff this")
         map("<leader>gbt", gs.toggle_current_line_blame, "Toggle line blame")
-        -- Text object
         vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { buffer = bufnr, desc = "Select hunk" })
       end,
     },
@@ -78,7 +74,7 @@ return {
     opts = {},
   },
 
-  -- ─── Formatting (keymaps owned by lsp/init.lua via <leader>lf) ───────────────
+  -- ─── Formatting ──────────────────────────────────────────────────────────────
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
@@ -87,7 +83,6 @@ return {
       formatters_by_ft = {
         lua      = { "stylua" },
         python   = { "ruff_format", "ruff_organize_imports" },
-        go       = { "gofumpt", "goimports" },
         c        = { "clang_format" },
         cpp      = { "clang_format" },
         cuda     = { "clang_format" },
@@ -108,7 +103,6 @@ return {
     config = function()
       require("lint").linters_by_ft = {
         python     = { "ruff" },
-        go         = { "golangci_lint" },
         sh         = { "shellcheck" },
         dockerfile = { "hadolint" },
       }
@@ -136,9 +130,9 @@ return {
     version = "*",
     event   = "VeryLazy",
     config  = function()
-      require("mini.ai").setup({ n_lines = 500 })  -- af/if/ac/ic text objects
-      require("mini.pairs").setup()                 -- auto close brackets/quotes
-      require("mini.move").setup()                  -- <M-hjkl> move lines/selection
+      require("mini.ai").setup({ n_lines = 500 })
+      require("mini.pairs").setup()
+      require("mini.move").setup()
     end,
   },
 
@@ -160,9 +154,9 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     event        = "BufReadPost",
     keys = {
-      { "]t",        function() require("todo-comments").jump_next() end, desc = "Next TODO" },
-      { "[t",        function() require("todo-comments").jump_prev() end, desc = "Prev TODO" },
-      { "<leader>xt", "<cmd>TodoTelescope<CR>", desc = "TODOs" },
+      { "]t",         function() require("todo-comments").jump_next() end, desc = "Next TODO" },
+      { "[t",         function() require("todo-comments").jump_prev() end, desc = "Prev TODO" },
+      { "<leader>xt", "<cmd>TodoTelescope<CR>",                            desc = "TODOs" },
     },
     opts = { signs = true },
   },
@@ -185,7 +179,7 @@ return {
     },
   },
 
-  -- ─── DAP ─────────────────────────────────────────────────────────────────────
+  -- ─── DAP (C/C++/CUDA + Python only) ──────────────────────────────────────────
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -194,7 +188,6 @@ return {
       "nvim-neotest/nvim-nio",
       "jay-babu/mason-nvim-dap.nvim",
       "mfussenegger/nvim-dap-python",
-      "leoluz/nvim-dap-go",
     },
     keys = {
       { "<leader>db", function() require("dap").toggle_breakpoint() end,                         desc = "Toggle breakpoint" },
@@ -212,7 +205,7 @@ return {
       local dapui = require("dapui")
 
       require("mason-nvim-dap").setup({
-        ensure_installed       = { "codelldb", "debugpy", "delve" },
+        ensure_installed       = { "codelldb", "debugpy" },
         automatic_installation = true,
         handlers               = {},
       })
@@ -224,35 +217,33 @@ return {
       dap.listeners.before.event_terminated["dapui"] = dapui.close
       dap.listeners.before.event_exited["dapui"]     = dapui.close
 
-      require("dap-python").setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python")
-      require("dap-go").setup()
+      -- Python
+      require("dap-python").setup(
+        vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
+      )
 
+      -- C / C++ / CUDA
       dap.adapters.codelldb = {
         type = "server", port = "${port}",
-        executable = { command = vim.fn.stdpath("data") .. "/mason/bin/codelldb", args = { "--port", "${port}" } },
+        executable = {
+          command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+          args    = { "--port", "${port}" },
+        },
       }
       for _, ft in ipairs({ "c", "cpp", "cuda" }) do
         dap.configurations[ft] = {
-          { name = "Launch", type = "codelldb", request = "launch",
-            program = function() return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file") end,
-            cwd = "${workspaceFolder}", stopOnEntry = false },
+          {
+            name        = "Launch",
+            type        = "codelldb",
+            request     = "launch",
+            program     = function()
+              return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file")
+            end,
+            cwd         = "${workspaceFolder}",
+            stopOnEntry = false,
+          },
         }
       end
     end,
-  },
-
-  -- ─── Copilot ─────────────────────────────────────────────────────────────────
-  {
-    "zbirenbaum/copilot.lua",
-    cmd   = "Copilot",
-    event = "InsertEnter",
-    opts  = {
-      suggestion = {
-        enabled      = true,
-        auto_trigger = true,
-        keymap       = { accept = "<M-l>", next = "<M-]>", prev = "<M-[>", dismiss = "<C-]>" },
-      },
-      panel = { enabled = false },
-    },
   },
 }
