@@ -22,7 +22,7 @@ return {
     },
   },
 
-  -- ─── Git signs ───────────────────────────────────────────────────────────────
+  -- ─── Git ─────────────────────────────────────────────────────────────────────
   {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
@@ -45,17 +45,14 @@ return {
         map("<leader>ghs", gs.stage_hunk,   "Stage hunk")
         map("<leader>ghr", gs.reset_hunk,   "Reset hunk")
         map("<leader>ghS", gs.stage_buffer, "Stage buffer")
-        map("<leader>ghR", gs.reset_buffer, "Reset buffer")
         map("<leader>ghp", gs.preview_hunk, "Preview hunk")
         map("<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame line")
         map("<leader>ghd", gs.diffthis,     "Diff this")
-        map("<leader>gbt", gs.toggle_current_line_blame, "Toggle line blame")
         vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { buffer = bufnr, desc = "Select hunk" })
       end,
     },
   },
 
-  -- ─── Lazygit ─────────────────────────────────────────────────────────────────
   {
     "kdheepak/lazygit.nvim",
     cmd          = "LazyGit",
@@ -63,18 +60,8 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
   },
 
-  -- ─── Diffview ────────────────────────────────────────────────────────────────
-  {
-    "sindrets/diffview.nvim",
-    cmd  = { "DiffviewOpen", "DiffviewClose", "DiffviewFileHistory" },
-    keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<CR>",          desc = "Diff view" },
-      { "<leader>gh", "<cmd>DiffviewFileHistory %<CR>", desc = "File history" },
-    },
-    opts = {},
-  },
-
   -- ─── Formatting ──────────────────────────────────────────────────────────────
+  -- Runs on save + on <leader>lf. LSP servers (ruff, clangd) handle linting.
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
@@ -96,23 +83,6 @@ return {
     },
   },
 
-  -- ─── Linting ─────────────────────────────────────────────────────────────────
-  {
-    "mfussenegger/nvim-lint",
-    event = { "BufWritePost", "BufReadPost" },
-    config = function()
-      require("lint").linters_by_ft = {
-        python     = { "ruff" },
-        sh         = { "shellcheck" },
-        dockerfile = { "hadolint" },
-      }
-      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
-        group    = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
-        callback = function() require("lint").try_lint() end,
-      })
-    end,
-  },
-
   -- ─── Flash jump ──────────────────────────────────────────────────────────────
   {
     "folke/flash.nvim",
@@ -130,56 +100,13 @@ return {
     version = "*",
     event   = "VeryLazy",
     config  = function()
-      require("mini.ai").setup({ n_lines = 500 })
-      require("mini.pairs").setup()
-      require("mini.move").setup()
+      require("mini.ai").setup({ n_lines = 500 })  -- af/if/ac/ic text objects
+      require("mini.pairs").setup()                 -- auto close brackets/quotes
+      require("mini.move").setup()                  -- <M-hjkl> move lines/selection
     end,
   },
 
-  -- ─── Trouble ─────────────────────────────────────────────────────────────────
-  {
-    "folke/trouble.nvim",
-    cmd  = "Trouble",
-    keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>",              desc = "Workspace diagnostics" },
-      { "<leader>xb", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics" },
-      { "<leader>xq", "<cmd>Trouble qflist toggle<CR>",                   desc = "Quickfix list" },
-    },
-    opts = { use_diagnostic_signs = true },
-  },
-
-  -- ─── Todo comments ───────────────────────────────────────────────────────────
-  {
-    "folke/todo-comments.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
-    event        = "BufReadPost",
-    keys = {
-      { "]t",         function() require("todo-comments").jump_next() end, desc = "Next TODO" },
-      { "[t",         function() require("todo-comments").jump_prev() end, desc = "Prev TODO" },
-      { "<leader>xt", "<cmd>TodoTelescope<CR>",                            desc = "TODOs" },
-    },
-    opts = { signs = true },
-  },
-
-  -- ─── Terminal ────────────────────────────────────────────────────────────────
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    keys = {
-      { "<C-t>",      "<cmd>ToggleTerm direction=float<CR>",      desc = "Float terminal",      mode = { "n", "t" } },
-      { "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Horizontal terminal" },
-      { "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>",   desc = "Vertical terminal" },
-    },
-    opts = {
-      direction       = "float",
-      hide_numbers    = true,
-      close_on_exit   = true,
-      start_in_insert = true,
-      float_opts      = { border = "curved", winblend = 10 },
-    },
-  },
-
-  -- ─── DAP (C/C++/CUDA + Python only) ──────────────────────────────────────────
+  -- ─── DAP (C/C++/CUDA + Python) ───────────────────────────────────────────────
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -217,12 +144,10 @@ return {
       dap.listeners.before.event_terminated["dapui"] = dapui.close
       dap.listeners.before.event_exited["dapui"]     = dapui.close
 
-      -- Python
       require("dap-python").setup(
         vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python"
       )
 
-      -- C / C++ / CUDA
       dap.adapters.codelldb = {
         type = "server", port = "${port}",
         executable = {

@@ -48,10 +48,7 @@ return {
         },
       },
 
-      signature = {
-        enabled = true,
-        window  = { border = "rounded" },
-      },
+      signature = { enabled = true, window = { border = "rounded" } },
     },
   },
 }

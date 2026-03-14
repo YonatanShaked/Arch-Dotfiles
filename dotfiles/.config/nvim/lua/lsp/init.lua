@@ -5,25 +5,19 @@ M.on_attach = function(client, bufnr)
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
   end
 
-  -- Navigation
   map("gd", "<cmd>Telescope lsp_definitions<CR>",     "Go to definition")
   map("gD", vim.lsp.buf.declaration,                   "Go to declaration")
   map("gr", "<cmd>Telescope lsp_references<CR>",       "Go to references")
   map("gI", "<cmd>Telescope lsp_implementations<CR>",  "Go to implementation")
   map("gy", "<cmd>Telescope lsp_type_definitions<CR>", "Go to type definition")
+  map("K",           vim.lsp.buf.hover,                "Hover documentation")
+  map("<leader>lk",  vim.lsp.buf.signature_help,       "Signature help")
+  map("<leader>lr",  vim.lsp.buf.rename,               "Rename symbol")
+  map("<leader>la",  vim.lsp.buf.code_action,          "Code action")
+  map("<leader>lf",  function() require("conform").format({ async = true, lsp_format = "fallback" }) end, "Format file")
+  map("<leader>li",  "<cmd>LspInfo<CR>",               "LSP info")
+  map("<leader>lR",  "<cmd>LspRestart<CR>",            "Restart LSP")
 
-  -- Docs
-  map("K",          vim.lsp.buf.hover,         "Hover documentation")
-  map("<leader>lk", vim.lsp.buf.signature_help, "Signature help")
-
-  -- Actions
-  map("<leader>lr", vim.lsp.buf.rename,                                        "Rename symbol")
-  map("<leader>la", vim.lsp.buf.code_action,                                   "Code action")
-  map("<leader>lf", function() require("conform").format({ async = true, lsp_format = "fallback" }) end, "Format file")
-  map("<leader>li", "<cmd>LspInfo<CR>",                                        "LSP info")
-  map("<leader>lR", "<cmd>LspRestart<CR>",                                     "Restart LSP")
-
-  -- Inlay hints toggle (Neovim 0.10+)
   if vim.lsp.inlay_hint and client.server_capabilities.inlayHintProvider then
     map("<leader>uh", function()
       vim.lsp.inlay_hint.enable(
@@ -37,11 +31,9 @@ M.capabilities = function()
   local caps = vim.lsp.protocol.make_client_capabilities()
   local ok, blink = pcall(require, "blink.cmp")
   if ok then caps = blink.get_lsp_capabilities(caps) end
-  caps.textDocument.foldingRange = { dynamicRegistration = false, lineFoldingOnly = true }
   return caps
 end
 
--- Diagnostics config
 vim.diagnostic.config({
   severity_sort    = true,
   underline        = true,

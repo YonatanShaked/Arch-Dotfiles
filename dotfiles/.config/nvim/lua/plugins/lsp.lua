@@ -1,5 +1,4 @@
 return {
-  -- ─── Mason ───────────────────────────────────────────────────────────────────
   {
     "williamboman/mason.nvim",
     cmd   = "Mason",
@@ -13,7 +12,6 @@ return {
     },
   },
 
-  -- ─── Mason-lspconfig ─────────────────────────────────────────────────────────
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
@@ -51,9 +49,9 @@ return {
         lua_ls = {
           settings = {
             Lua = {
-              runtime    = { version = "LuaJIT" },
-              workspace  = { checkThirdParty = false, library = vim.api.nvim_get_runtime_file("", true) },
-              telemetry  = { enable = false },
+              runtime     = { version = "LuaJIT" },
+              workspace   = { checkThirdParty = false, library = vim.api.nvim_get_runtime_file("", true) },
+              telemetry   = { enable = false },
               diagnostics = { globals = { "vim" } },
               hint        = { enable = true },
               format      = { enable = false },
@@ -79,9 +77,9 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "clangd",   -- C / C++ / CUDA
-          "pyright",  -- Python
-          "ruff",     -- Python linting/formatting
-          "lua_ls",   -- Lua
+          "pyright",  -- Python type checking
+          "ruff",     -- Python linting + formatting
+          "lua_ls",   -- Lua (this config)
           "jsonls",   -- JSON
           "yamlls",   -- YAML
         },

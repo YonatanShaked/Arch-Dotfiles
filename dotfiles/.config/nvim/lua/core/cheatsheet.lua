@@ -25,12 +25,14 @@ local content = [[
 
  GIT
   <leader>gg        Open Lazygit (full git UI)
-  <leader>gd        Diff view (side by side)
-  <leader>gh        File history
   ]h / [h           Next / previous hunk
   <leader>ghs       Stage hunk
   <leader>ghp       Preview hunk
   <leader>ghb       Blame current line
+  <leader>ghd       Diff this file
+  <leader>gc        Git commits (telescope)
+  <leader>gb        Git branches (telescope)
+  <leader>gs        Git status (telescope)
 
  LSP & CODE
   <leader>lr        Rename symbol
@@ -40,8 +42,9 @@ local content = [[
   <leader>uh        Toggle inlay hints
   <leader>cd        Show diagnostic detail
   ]d / [d           Next / previous diagnostic
-  <leader>xx        Workspace diagnostics panel
-  <leader>xb        Buffer diagnostics panel
+  ]f / [f           Next / previous function
+  af / if           Around / inside function (text object)
+  ac / ic           Around / inside class (text object)
 
  DEBUG (C/C++/CUDA/Python)
   <leader>db        Toggle breakpoint
@@ -54,15 +57,9 @@ local content = [[
   <leader>de        Evaluate expression (visual works too)
   <leader>dt        Terminate session
 
- TERMINAL
-  <C-t>             Toggle floating terminal
-  <leader>th        Horizontal split terminal
-  <leader>tv        Vertical split terminal
-  <Esc><Esc>        Exit terminal mode
-
  TOOLS
   <leader>?         Show this cheatsheet
-  <leader>m         Mason (LSP/tool installer)
+  <leader>m         Mason (install LSP servers, formatters)
   :Lazy             Plugin manager
   :ConformInfo      Show active formatters
   :LspInfo          Show active LSP servers
@@ -71,10 +68,9 @@ local content = [[
   <leader>un        Dismiss notifications
 
  EDITING
-  gc (+ motion)     Toggle comment
-  <M-hjkl>          Move line/selection (mini.move)
-  af / if           Around / inside function (text object)
-  ac / ic           Around / inside class (text object)
+  gc + motion       Toggle comment
+  <M-hjkl>          Move line/selection
+  <C-space>         Expand treesitter selection
 ]]
 
 function M.show()
