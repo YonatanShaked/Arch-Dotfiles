@@ -249,7 +249,7 @@ require('lazy').setup({
 		},
 		build = ':TSUpdate',
 	},
-
+})
 	-- Set highlight on search
 	vim.o.hlsearch = false
 	vim.wo.number = true
