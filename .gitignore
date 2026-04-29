@@ -1,3 +1,4 @@
 dotfiles/.config/nvim/lazy-lock.json
 dotfiles/.config/hypr/monitors.conf
 dotfiles/.config/hypr/workspaces.conf
+dotfiles/.local/bin/conan
