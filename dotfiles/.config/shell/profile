@@ -12,7 +12,7 @@ unsetopt PROMPT_SP 2>/dev/null
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export TERMINAL_PROG="alacritty"
-export BROWSER="brave"
+export BROWSER="helium-browser"
 
 # ~/ Clean-up:
 export XDG_CONFIG_HOME="$HOME/.config"
